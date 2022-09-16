@@ -39,7 +39,7 @@ class Classes1 {
    
     }
     else{
-        System.out.println("  something has less than 5 letters AND contains a period");
+        System.out.println("something has less than 5 letters. cannot say for sure if it has a period");
 
     }
     
@@ -60,12 +60,12 @@ class Classes1 {
         System.out.println("something has more that 5 letters and doesn't contain a period AND something has either the letter a or the letter b");
     }
     else{
-        System.out.println("something has less that 5 letters and contains a period. cannot say for sure if something contains a or b");
+        System.out.println("something has less that 5 letters. cannot say for sure if something contains a or b or a period");
     }
 
 
     if (! ((!five_plus || b) || (a && period) )) { //DeMorgan's law
-        System.out.println("De Morgan's law with code that I cannot explain through writing");
+        System.out.println("De Morgan's law with complex expressions: if something has 5+ letters, and/or doesn't have a 'b' and/or doesn't have an 'a' AND has a period.");
     }
     else{
         System.out.println("De Morgan's law with code, if it doesn't work");
