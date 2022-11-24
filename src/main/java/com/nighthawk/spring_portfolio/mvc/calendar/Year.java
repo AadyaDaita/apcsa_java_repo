@@ -9,6 +9,13 @@ package com.nighthawk.spring_portfolio.mvc.calendar;
 class Year {
    private int year;
    private boolean isLeapYear;
+   private int firstDayOfYear;
+   private int dayOfWeek;
+   private int month;
+   private int day;
+   private int year1;
+   private int year2;
+   private int numberOfLeapYears;
    
 
    // zero argument constructor
@@ -21,8 +28,26 @@ class Year {
    public void setYear(int year) {
       this.year = year;
       this.setIsLeapYear(year);
-      this.firstDayOfYear(year);
+      this.setfirstDayOfYear(year);
+      
    }
+
+   public void setDate(int month, int day, int year) {
+      this.year = year;
+      this.month = month;
+      this.day = day;
+      this.setdayOfWeek(month, day, year);
+   }
+
+   public void setYears(int year1, int year2) {
+      this.year1 = year1;
+      this.year2 =year2;
+      this.setnumberOfLeapYears(year1, year2);
+      
+   }
+
+   
+
 
 
    /* isLeapYear getter/setters */
@@ -44,52 +69,66 @@ class Year {
 
 
 
+
    /* firstDayOfYear getter/setters */
    public int getfirstDayOfYear(int year) {
       return APCalendar.firstDayOfYear(year);
    }
+
+   private void setfirstDayOfYear(int year) {  // this is private to avoid tampering
+      this.firstDayOfYear = APCalendar.firstDayOfYear(year);
+   }
   
    public String firstDayOfYearToString(){
-      return ( "{ \"year\": "  +this.year+  ", " + "\"firstDayOfYear\": "  +this.firstDayOfYear(year)+ " }" );
+      return ( "{ \"year\": "  +this.year+  ", " + "\"firstDayOfYear\": "  +this.firstDayOfYear+ " }" );
+   }	
+
+
+
+
+
+
+   /* firstDayOfYear getter/setters */
+   public int getnumberOfLeapYears(int year) {
+      return APCalendar.numberOfLeapYears(year1, year2);
+   }
+
+   private void setnumberOfLeapYears(int year1, int year2) {  // this is private to avoid tampering
+      this.numberOfLeapYears = APCalendar.numberOfLeapYears(year1, year2);
+   }
+  
+   public String numberOfLeapYearsToString(){
+      return ( "{ \"years\": "  +  "\"" + this.year1+ "-" + this.year2+ "\"" + ", " + "\"numberOfLeapYears\": "  +this.numberOfLeapYears+ " }" );
    }	
 
 
    
-//MAKE SURE U DELETE THESE AFTER YOU FIGURE OUT HOW TO IMPORT FROM AP CALENDER!
-
-   static int dayofyear(int d, int m, int y){
-      int t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
-      if (m < 3)
-          y--;
-      return (y + y / 4 - y / 100 + y / 400 + t[m - 1]+ d) % 7;
-  }
-   
-      
-  /** Returns the value representing the day of the week 
-   * 0 denotes Sunday, 
-   * 1 denotes Monday, ..., 
-   * 6 denotes Saturday. 
-   * firstDayOfYear(2019) returns 2 for Tuesday.
-  */
-  public int firstDayOfYear(int year) {
-      // implementation not shown
-      return dayofyear(1, 1, year);
-     
-      }
 
 
 
 
+   /* firstDayOfYear getter/setters */
+   public int getdayOfWeek(int month, int day, int year) {
+      return APCalendar.dayOfWeek(month, day, year);
+   }
 
-
+   private void setdayOfWeek(int month, int day, int year) {  // this is private to avoid tampering
+      this.dayOfWeek = APCalendar.dayOfWeek(month, day, year);
+   }
+  
+   public String dayOfWeekToString(){
+      return ( "{ \"Date\": "  + "\"" + this.month + "-" + this.day +"-" +  this.year + "\"" +  ", " + "\"dayOfWeek\": "  + this.dayOfWeek + " }" );
+   }	
 
 
 
 
 
    public static void main(String[] args) {
-      Year year = new Year();
-      year.setYear(2022);
-      System.out.println(year);
+      Year year_obj = new Year();
+      //year_obj.setYear(2022);
+      //year_obj.setDate(1,17,2022);
+      year_obj.setYears(2016,2022);
+      System.out.println(year_obj.numberOfLeapYearsToString());
    }
 }

@@ -43,8 +43,7 @@ public class APCalendar {
      * dayOfYear(3, 1, 2017) returns 60, since 2017 is not a leap year
      * dayOfYear(3, 1, 2016) returns 61, since 2016 is a leap year. 
     */ 
-    private static int dayOfYear(int month, int day, int year) {
-        // implementation not shown
+    public static int dayOfYear(int month, int day, int year) {
         int day_number = 0;
         if (isLeapYear(year)){
             day_number +=1;
@@ -119,7 +118,15 @@ public class APCalendar {
         int day_of_the_year = dayOfYear(month, day, year);
         int remainder = day_of_the_year % 7;
         int first_day = firstDayOfYear(year);
-        return first_day + remainder - 1;
+        int day_of_week = first_day + remainder - 1;
+        if (day_of_week>6){
+            day_of_week = 6;
+        }
+        else if (day_of_week<0){
+            day_of_week = 0;
+        }
+        return day_of_week;
+        
         }
 
 
