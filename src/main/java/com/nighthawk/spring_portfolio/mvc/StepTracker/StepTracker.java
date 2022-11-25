@@ -1,5 +1,8 @@
 package com.nighthawk.spring_portfolio.mvc.StepTracker;
+
 import java.util.ArrayList;
+
+import javax.persistence.Entity;
 
 public class StepTracker {
     ArrayList<Integer> steps = new ArrayList<Integer>(); 
