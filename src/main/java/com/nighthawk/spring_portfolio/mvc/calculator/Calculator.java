@@ -26,6 +26,7 @@ public class Calculator {
     {
         // Map<"token", precedence>
         OPERATORS.put("^", 2);
+        OPERATORS.put("R", 2);
         OPERATORS.put("*", 3);
         OPERATORS.put("/", 3);
         OPERATORS.put("%", 3);
@@ -171,6 +172,7 @@ public class Calculator {
                     case "/":
                     case "%":
                     case "^":
+                    case "R":
                         // While stack
                         // not empty AND stack top element
                         // and is an operator
@@ -240,7 +242,10 @@ public class Calculator {
                 else if(token.equals("^")){
                     result = Math.pow(entry2, entry1);
                 }
-            
+                else if(token.equals("R")){
+                    result = Math.pow(entry2, (1/ entry1));
+                }
+             
 
                 // Push intermediate result back onto the stack
                 calcStack.push( result );
@@ -261,6 +266,13 @@ public class Calculator {
                 "Tokenized expression: " + this.tokens.toString() + "\n" +
                 "Reverse Polish Notation: " +this.reverse_polish.toString() + "\n" +
                 "Final result: " + String.format("%.2f", this.result));
+    }
+
+
+    public String jsonify() {
+        String json = "{ \"Expression\": \"" + this.expression + "\", \"Tokenized Expression\": \"" + this.tokens + 
+        "\", \"Reverse Polish Notation\": \"" + this.reverse_polish + "\", \"Result\": " + this.result + " }";
+        return json;
     }
 
     // Tester method
@@ -292,6 +304,9 @@ public class Calculator {
 
          Calculator exponent = new Calculator("2^8");
          System.out.println("Exponent Math\n" + exponent);
+
+         Calculator sqrt = new Calculator("125R3");
+         System.out.println("Exponent Math\n" + sqrt);
  
 
     }
